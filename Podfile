@@ -5,7 +5,7 @@ target 'CurrencyRate' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for CurrencyRate
+  pod 'SwiftLint'
 
   target 'CurrencyRateTests' do
     inherit! :search_paths

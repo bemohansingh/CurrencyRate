@@ -1,0 +1,20 @@
+reporter: "xcode"
+
+disabled_rules:
+- todo
+- trailing_whitespace
+
+opt_in_rules:
+- unneeded_parentheses_in_closure_argument
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+- Carthage
+- Pods
+- CurrencyRate/AppDelegate.swift
+- CurrencyRate/SceneDelegate.swift
+- CurrencyRateTests
+- CurrencyRateUITests
+
+line_length: 150
+
+
