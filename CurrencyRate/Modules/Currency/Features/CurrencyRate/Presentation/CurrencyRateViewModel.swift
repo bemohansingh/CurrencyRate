@@ -12,6 +12,8 @@ import RxSwift
 class CurrencyRateViewModel: BaseViewModel {
     
     let getCurrenciesUseCase: GetCurrenciesUseCaseProtocol
+    let saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol
+    let getCurrencyRate: GetCurrencyRateUseCaseProtocol
     
     let hideCurrencyInput = BehaviorRelay<Bool>(value: true)
     let fromCurrency = BehaviorRelay<String?>(value: nil)
@@ -23,8 +25,10 @@ class CurrencyRateViewModel: BaseViewModel {
     let currencies = BehaviorRelay<[CurrencyModel]>(value: [])
     let errorFound = PublishSubject<String>()
     
-    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol) {
+    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol, saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol, getCurrencyRate: GetCurrencyRateUseCaseProtocol) {
         self.getCurrenciesUseCase = getCurrenciesUseCase
+        self.saveCurrencyRates = saveCurrencyRates
+        self.getCurrencyRate = getCurrencyRate
         super.init()
         self.observeEvents()
     }
@@ -72,6 +76,11 @@ class CurrencyRateViewModel: BaseViewModel {
             case .failure(let error):
                 self.errorFound.onNext(error.localizedDescription)
             }
+        }
+    }
+    
+    func getCurrencyRates(baseCurrencySymbol: String) {
+        saveCurrencyRates.execute(baseCurrencySymbol: baseCurrencySymbol) { _ in
         }
     }
 }

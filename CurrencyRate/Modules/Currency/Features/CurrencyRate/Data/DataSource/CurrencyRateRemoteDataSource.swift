@@ -9,7 +9,7 @@ import Foundation
 
 protocol CurrencyRateRemoteDataSourceProtocol {
     func getCurrencies(onComplete: @escaping(Result<CurrencyResponseEntity, Error>) -> Void)
-    func gerCurrencyRate(defaultCurrency: String)
+    func gerCurrencyRate(defaultCurrency: String, onComplete: @escaping(Result<CurrencyRateResponseEntity, Error>) -> Void)
 }
 
 struct CurrencyRateRemoteDataSource: CurrencyRateRemoteDataSourceProtocol {
@@ -32,8 +32,16 @@ struct CurrencyRateRemoteDataSource: CurrencyRateRemoteDataSourceProtocol {
         }
     }
     
-    func gerCurrencyRate(defaultCurrency: String) {
-        
+    func gerCurrencyRate(defaultCurrency: String, onComplete: @escaping(Result<CurrencyRateResponseEntity, Error>) -> Void) {
+        networkClient.execute(api: CurrencyRateApis.getCurrencyRate) { response in
+            if let currencyEntity = try? JSONDecoder().decode(CurrencyRateResponseEntity.self, from: response.data) {
+                onComplete(.success(currencyEntity))
+            } else {
+                onComplete(.failure(APIError.parseError(response.statusCode, "Parse Error")))
+            }
+        } onError: { error in
+            onComplete(.failure(error))
+        }
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 protocol CurrencyRateRepositoryProtocol {
     func getCurrencies(onComplete: @escaping(Result<[CurrencyModel], Error>) -> Void)
     func saveCurrenciesToLocalStorage(currencies: CurrencyResponseEntity) -> [CurrencyModel]
-    func getCurrencyRate(defaulrCurrency: String)
+    func saveCurrencyRatesFromRemote(baseCurrencySymbol: String, onComplete: @escaping(Result<Bool, Error>) -> Void)
 }
 
 struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
@@ -38,7 +38,16 @@ struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
         return currencyRateLocalDataSource.saveCurrencies(currencies: currencies)
     }
     
-    func getCurrencyRate(defaulrCurrency: String) {
+    func saveCurrencyRatesFromRemote(baseCurrencySymbol: String, onComplete: @escaping(Result<Bool, Error>) -> Void) {
         
+        currencyRateRemoteDataSource.gerCurrencyRate(defaultCurrency: baseCurrencySymbol) { result in
+            switch result {
+            case .success(let entity):
+                _ = currencyRateLocalDataSource.saveCurrencyRates(currencyRates: entity)
+                onComplete(.success(true))
+            case .failure(let error):
+                onComplete(.failure(error))
+            }
+        }
     }
 }

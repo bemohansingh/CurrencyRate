@@ -11,7 +11,7 @@ import CoreData
 protocol CurrencyRateLocalDataSourceProtocol {
     func saveCurrencies(currencies: CurrencyResponseEntity) -> [CurrencyModel]
     func getCurrencies() -> [CurrencyModel]
-    func saveCurrencyRates()
+    func saveCurrencyRates(currencyRates: CurrencyRateResponseEntity) -> [CurrencyRateModel]
     func saveCurrencyRateSearchHistory()
     func getCurrencyRate(fromSymbol: String, toSymbol: String)
 }
@@ -50,8 +50,19 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
            }
     }
     
-    func saveCurrencyRates() {
+    func saveCurrencyRates(currencyRates: CurrencyRateResponseEntity) -> [CurrencyRateModel] {
+        var currencyRateModels: [CurrencyRateModel] = []
+        let object = localStorage.managedContext
+        currencyRates.rates.forEach { key, value in
+            let currencyRateModel = CurrencyRateModel(context: object)
+            currencyRateModel.symbol = key
+            currencyRateModel.rate = value
+            currencyRateModel.isBase = currencyRates.base == key
+            currencyRateModels.append(currencyRateModel)
+        }
+        localStorage.saveContext()
         
+        return currencyRateModels
     }
     
     func saveCurrencyRateSearchHistory() {

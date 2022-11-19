@@ -38,6 +38,7 @@ class CurrencyRateViewController: BaseViewController {
         currencyRateView.detailCurrencyButton.addTarget(self, action: #selector(gotoDetailView), for: .touchUpInside)
         currencyRateView.switchCurrencyButton.addTarget(self, action: #selector(switchCurrencyTapped), for: .touchUpInside)
         currencyRateViewModel.getCurrencies()
+        currencyRateViewModel.getCurrencyRates(baseCurrencySymbol: "USD")
     }
     
     override func observeEvents() {

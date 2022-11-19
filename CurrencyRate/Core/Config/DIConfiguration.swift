@@ -19,7 +19,18 @@ struct DIContainer {
             return NetworkClient(config: networkConfiguration)
     }
     
+    func getCurrencyRemoteDataSource() -> CurrencyRateRemoteDataSourceProtocol {
+        return CurrencyRateRemoteDataSource(networkClient: getNeworkService())
+    }
+    
+    func getCurrencyRateRepository() -> CurrencyRateRepositoryProtocol {
+        return CurrencyRateRepository(currencyRateLocalDataSource: CurrencyRateLocalDataSource(localStorage: localStorage), currencyRateRemoteDataSource: getCurrencyRemoteDataSource())
+    }
+    
     func getCurrencyRateViewModel() -> BaseViewModel {
-        return CurrencyRateViewModel(getCurrenciesUseCase: GetCurrenciesUseCase(currencyRateRepository: CurrencyRateRepository(currencyRateLocalDataSource: CurrencyRateLocalDataSource(localStorage: localStorage), currencyRateRemoteDataSource: CurrencyRateRemoteDataSource(networkClient: getNeworkService()))))
+        let getCurrencyUseCase = GetCurrenciesUseCase(currencyRateRepository: getCurrencyRateRepository())
+        let saveCurrencyRates = SaveCurrencyRatesFromRemoteUseCase(currencyRateRepository: getCurrencyRateRepository())
+        let getCurrencyRate = GetCurrencyRateUseCase(currencyRateRepository: getCurrencyRateRepository())
+        return CurrencyRateViewModel(getCurrenciesUseCase: getCurrencyUseCase, saveCurrencyRates: saveCurrencyRates, getCurrencyRate: getCurrencyRate)
     }
 }
