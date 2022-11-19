@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum RequestTextField {
+    case fromTextField
+    case toTextField
+    case nothing
+}
+
 class CurrencyRateView: BaseView {
     lazy var fromTextField: UITextField = {
         let textField = UITextField()
@@ -20,7 +26,7 @@ class CurrencyRateView: BaseView {
         textField.layer.shadowOpacity = 0.2
         textField.layer.shadowOffset = CGSize(width: 0, height: 0)
         textField.tintColor = .white
-        //dropdown icon
+        // dropdown icon
         textField.rightViewMode = UITextField.ViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 22, width: 16, height: 12))
         let image = UIImage(systemName: "chevron.down")
@@ -44,7 +50,7 @@ class CurrencyRateView: BaseView {
         textField.layer.shadowOpacity = 0.2
         textField.layer.shadowOffset = CGSize(width: 0, height: 0)
         textField.tintColor = .white
-        //dropdown icon
+        // dropdown icon
         textField.rightViewMode = UITextField.ViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 22, width: 16, height: 12))
         let image = UIImage(systemName: "chevron.down")
@@ -129,7 +135,6 @@ class CurrencyRateView: BaseView {
             toTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 55),
             toTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             toTextField.heightAnchor.constraint(equalToConstant: 55),
-            
             
             inputCurrencyTextField.topAnchor.constraint(equalTo: fromTextField.bottomAnchor, constant: 25),
             inputCurrencyTextField.leadingAnchor.constraint(equalTo: fromTextField.leadingAnchor),

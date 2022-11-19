@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct NetworkResponse {
+    let statusCode: Int
+    let data: Data
+}
+
 protocol NetworkService {
-    func execute(api: RequestApi, onCompletetion: @escaping(URLResponse) -> Void, onError: @escaping(APIError) -> Void)
+    func execute(api: RequestApi, onCompletetion: @escaping(NetworkResponse) -> Void, onError: @escaping(APIError) -> Void)
 }

@@ -7,8 +7,12 @@
 
 import Foundation
 import RxCocoa
+import RxSwift
 
 class CurrencyRateViewModel: BaseViewModel {
+    
+    let getCurrenciesUseCase: GetCurrenciesUseCaseProtocol
+    
     let hideCurrencyInput = BehaviorRelay<Bool>(value: true)
     let fromCurrency = BehaviorRelay<String?>(value: nil)
     let toCurrency = BehaviorRelay<String?>(value: nil)
@@ -16,7 +20,11 @@ class CurrencyRateViewModel: BaseViewModel {
     let inputCurrency = BehaviorRelay<Double>(value: 1)
     let outputCurrency = BehaviorRelay<Double>(value: 0)
     
-    override init() {
+    let currencies = BehaviorRelay<[CurrencyModel]>(value: [])
+    let errorFound = PublishSubject<String>()
+    
+    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol) {
+        self.getCurrenciesUseCase = getCurrenciesUseCase
         super.init()
         self.observeEvents()
     }
@@ -53,5 +61,17 @@ class CurrencyRateViewModel: BaseViewModel {
         toCurrency.accept(fromCurrency.value)
         fromCurrency.accept(toCurrencyTemp)
         convertCurrency()
+    }
+    
+    func getCurrencies() {
+        getCurrenciesUseCase.execute {[weak self] result in
+            guard let self = self else {return}
+            switch result {
+            case .success(let currencies):
+                self.currencies.accept(currencies)
+            case .failure(let error):
+                self.errorFound.onNext(error.localizedDescription)
+            }
+        }
     }
 }

@@ -13,12 +13,11 @@ extension CurrencyRateViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        10
+        currencyRateViewModel.currencies.value.count
     }
     
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(row)"
+        return "\(currencyRateViewModel.currencies.value[row].symbol) : \(currencyRateViewModel.currencies.value[row].name)"
     }
     
 }

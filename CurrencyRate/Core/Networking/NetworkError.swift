@@ -9,15 +9,15 @@ import Foundation
 /// Enum of API Errors
 enum APIError: Error {
     /// No data received from the server.
-    case noData
+    case noData(Int)
     /// The server response was invalid (unexpected format).
-    case invalidResponse
+    case invalidResponse(Int)
     /// The request was rejected: 400-499
-    case badRequest(String?)
+    case badRequest(Int, String?)
     /// Encoutered a server error.
-    case serverError(String?)
+    case serverError(Int, String?)
     /// There was an error parsing the data.
-    case parseError(String?)
+    case parseError(Int, String?)
     /// Unknown error.
     case unknown
 }

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         guard let scene = (scene as? UIWindowScene) else { return }
             window = UIWindow(windowScene: scene)
-            let currencyVC = CurrencyRateViewController(baseView: CurrencyRateView(), baseViewModel: CurrencyRateViewModel())
+        let currencyVC = CurrencyRateViewController(baseView: CurrencyRateView(), baseViewModel: DIContainer.shared.getCurrencyRateViewModel())
             let navigationController = UINavigationController(rootViewController: currencyVC)
             navigationController.navigationBar.isTranslucent = true
             self.window?.rootViewController = navigationController

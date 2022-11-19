@@ -7,14 +7,15 @@
 
 import Foundation
 
-class NetworkClient: NetworkService {
+struct NetworkClient: NetworkService {
+    
     private let networkConfiguration: NetworkConfiguration
     
     init(config: NetworkConfiguration) {
         self.networkConfiguration = config
     }
     
-    func execute(api: RequestApi, onCompletetion: @escaping(URLResponse) -> Void, onError: @escaping(APIError) -> Void) {
+    func execute(api: RequestApi, onCompletetion: @escaping(NetworkResponse) -> Void, onError: @escaping(APIError) -> Void) {
         let url = networkConfiguration.baseUrl.appending(path: api.path)
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -22,13 +23,19 @@ class NetworkClient: NetworkService {
         request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                    print(data)
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                if let data = data {
+                    onCompletetion(NetworkResponse(statusCode: httpResponse.statusCode, data: data))
                 } else if let error = error {
-                    print("HTTP Request Failed \(error)")
+                    onError(APIError.parseError(httpResponse.statusCode, error.localizedDescription))
                 }
+            } else {
+                onError(APIError.unknown)
+            }
         }
-
+        
         task.resume()
     }
 }
