@@ -12,13 +12,14 @@ struct DIContainer {
     static let shared = DIContainer()
     private init() {}
     
-    let networkConfiguration = NetworkConfiguration(baseUrl: URL(string: "https://api.apilayer.com/")!)
+     let networkConfiguration = NetworkConfiguration(baseUrl: URL(string: "https://api.apilayer.com/")!)
+     let localStorage: LocalStorage = .init(modelName: "CurrencyStorage")
     
     func getNeworkService() -> NetworkService {
             return NetworkClient(config: networkConfiguration)
     }
     
     func getCurrencyRateViewModel() -> BaseViewModel {
-        return CurrencyRateViewModel(getCurrenciesUseCase: GetCurrenciesUseCase(currencyRateRepository: CurrencyRateRepository(currencyRateLocalDataSource: CurrencyRateLocalDataSource(), currencyRateRemoteDataSource: CurrencyRateRemoteDataSource(networkClient: getNeworkService()))))
+        return CurrencyRateViewModel(getCurrenciesUseCase: GetCurrenciesUseCase(currencyRateRepository: CurrencyRateRepository(currencyRateLocalDataSource: CurrencyRateLocalDataSource(localStorage: localStorage), currencyRateRemoteDataSource: CurrencyRateRemoteDataSource(networkClient: getNeworkService()))))
     }
 }

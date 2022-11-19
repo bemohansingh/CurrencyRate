@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CurrencyModel" representedClassName="CurrencyModel" syncable="YES">
+        <attribute name="name" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
+    </entity>
+    <entity name="CurrencyRateModel" representedClassName="CurrencyRateModel" syncable="YES">
+        <attribute name="isBase" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="rate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="symbol" attributeType="String"/>
+    </entity>
+    <entity name="HistoryModel" representedClassName="HistoryModel" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fromSymbol" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="toRate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="toSymbol" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+</model>
