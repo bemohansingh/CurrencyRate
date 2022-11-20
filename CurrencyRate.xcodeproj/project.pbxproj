@@ -25,6 +25,13 @@
 		0A39AF11292A2F560070813C /* CurrencyRateRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF10292A2F560070813C /* CurrencyRateRepositoryMock.swift */; };
 		0A39AF13292A360E0070813C /* CurrencyRateUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF12292A360E0070813C /* CurrencyRateUseCaseTests.swift */; };
 		0A39AF15292A37510070813C /* CurrenciesUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF14292A37510070813C /* CurrenciesUseCaseMock.swift */; };
+		0A39AF19292A40500070813C /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF18292A40500070813C /* NetworkClientTests.swift */; };
+		0A39AF1B292A449C0070813C /* HistoryLocalDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF1A292A449C0070813C /* HistoryLocalDataSourceMock.swift */; };
+		0A39AF1D292A44EC0070813C /* HistoryRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF1C292A44EC0070813C /* HistoryRepositoryMock.swift */; };
+		0A39AF1F292A45190070813C /* HistoryUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF1E292A45190070813C /* HistoryUseCaseMock.swift */; };
+		0A39AF21292A45770070813C /* HistoryLocalDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF20292A45770070813C /* HistoryLocalDataSourceTests.swift */; };
+		0A39AF23292A45890070813C /* HistoryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF22292A45890070813C /* HistoryRepositoryTests.swift */; };
+		0A39AF25292A45970070813C /* HistoryUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A39AF24292A45970070813C /* HistoryUseCaseTests.swift */; };
 		0A61B6A529292B08003263FF /* CurrencyStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A61B6A329292B08003263FF /* CurrencyStorage.xcdatamodeld */; };
 		0A61B6A729292C8A003263FF /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A61B6A629292C8A003263FF /* LocalStorage.swift */; };
 		0A61B6AE2929378F003263FF /* HistoryModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A61B6A82929378F003263FF /* HistoryModel+CoreDataClass.swift */; };
@@ -197,6 +204,13 @@
 		0A39AF10292A2F560070813C /* CurrencyRateRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateRepositoryMock.swift; sourceTree = "<group>"; };
 		0A39AF12292A360E0070813C /* CurrencyRateUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateUseCaseTests.swift; sourceTree = "<group>"; };
 		0A39AF14292A37510070813C /* CurrenciesUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesUseCaseMock.swift; sourceTree = "<group>"; };
+		0A39AF18292A40500070813C /* NetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTests.swift; sourceTree = "<group>"; };
+		0A39AF1A292A449C0070813C /* HistoryLocalDataSourceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLocalDataSourceMock.swift; sourceTree = "<group>"; };
+		0A39AF1C292A44EC0070813C /* HistoryRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryMock.swift; sourceTree = "<group>"; };
+		0A39AF1E292A45190070813C /* HistoryUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUseCaseMock.swift; sourceTree = "<group>"; };
+		0A39AF20292A45770070813C /* HistoryLocalDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLocalDataSourceTests.swift; sourceTree = "<group>"; };
+		0A39AF22292A45890070813C /* HistoryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryTests.swift; sourceTree = "<group>"; };
+		0A39AF24292A45970070813C /* HistoryUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUseCaseTests.swift; sourceTree = "<group>"; };
 		0A61B6A429292B08003263FF /* CurrencyStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyStorage.xcdatamodel; sourceTree = "<group>"; };
 		0A61B6A629292C8A003263FF /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		0A61B6A82929378F003263FF /* HistoryModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryModel+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -412,8 +426,22 @@
 		0A39AF16292A3D420070813C /* History */ = {
 			isa = PBXGroup;
 			children = (
+				0A39AF17292A3FAE0070813C /* MOCK */,
+				0A39AF20292A45770070813C /* HistoryLocalDataSourceTests.swift */,
+				0A39AF22292A45890070813C /* HistoryRepositoryTests.swift */,
+				0A39AF24292A45970070813C /* HistoryUseCaseTests.swift */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		0A39AF17292A3FAE0070813C /* MOCK */ = {
+			isa = PBXGroup;
+			children = (
+				0A39AF1A292A449C0070813C /* HistoryLocalDataSourceMock.swift */,
+				0A39AF1C292A44EC0070813C /* HistoryRepositoryMock.swift */,
+				0A39AF1E292A45190070813C /* HistoryUseCaseMock.swift */,
+			);
+			path = MOCK;
 			sourceTree = "<group>";
 		};
 		0A61B7032929C1C6003263FF /* Models */ = {
@@ -620,6 +648,7 @@
 				0AEDD928292A2DCE00FA485C /* CurrencyRateRepositoryTests.swift */,
 				0AEDD923292A29D900FA485C /* MOCK */,
 				0A39AF12292A360E0070813C /* CurrencyRateUseCaseTests.swift */,
+				0A39AF18292A40500070813C /* NetworkClientTests.swift */,
 			);
 			path = CurrencyRate;
 			sourceTree = "<group>";
@@ -997,16 +1026,20 @@
 				0A61B6F129294552003263FF /* BaseView.swift in Sources */,
 				0A61B6BC292944EF003263FF /* CurrencyRateEntity.swift in Sources */,
 				0A61B6EF2929454E003263FF /* NetworkError.swift in Sources */,
+				0A39AF19292A40500070813C /* NetworkClientTests.swift in Sources */,
 				0A61B6D329294520003263FF /* CurrencyRateViewModel.swift in Sources */,
 				0AEDD918292A24BD00FA485C /* LatestRateModel.swift in Sources */,
+				0A39AF1D292A44EC0070813C /* HistoryRepositoryMock.swift in Sources */,
 				0A61B6D529294526003263FF /* HistoryModel+CoreDataClass.swift in Sources */,
 				0A61B6F329294555003263FF /* BaseViewController.swift in Sources */,
 				0AEDD927292A2AC300FA485C /* CurrencyRateRemoteDataSourceMock.swift in Sources */,
 				0AEDD904292A249600FA485C /* Date+Ext.swift in Sources */,
 				0A61B6C72929450C003263FF /* GetCurrenciesUseCase.swift in Sources */,
 				0AEDD90C292A24A400FA485C /* HistoryViewController.swift in Sources */,
+				0A39AF21292A45770070813C /* HistoryLocalDataSourceTests.swift in Sources */,
 				0A1CC3082927682D00B63CBE /* CurrencyRateTests.swift in Sources */,
 				0A61B6E929294546003263FF /* NetworkService.swift in Sources */,
+				0A39AF1F292A45190070813C /* HistoryUseCaseMock.swift in Sources */,
 				0AEDD916292A24B800FA485C /* HistoryLocalDataSource.swift in Sources */,
 				0AEDD906292A249C00FA485C /* History+TableView.swift in Sources */,
 				0A39AF15292A37510070813C /* CurrenciesUseCaseMock.swift in Sources */,
@@ -1032,9 +1065,12 @@
 				0A61B6E729294544003263FF /* RequestApi.swift in Sources */,
 				0AEDD912292A24AE00FA485C /* GetHistoryUseCase.swift in Sources */,
 				0A39AF11292A2F560070813C /* CurrencyRateRepositoryMock.swift in Sources */,
+				0A39AF25292A45970070813C /* HistoryUseCaseTests.swift in Sources */,
 				0A61B6C2292944F9003263FF /* CurrencyRateApis.swift in Sources */,
 				0A61B6C92929450F003263FF /* SaveCurrencyRatesFromRemoteUseCase.swift in Sources */,
 				0AEDD90E292A24A800FA485C /* HistoryCell.swift in Sources */,
+				0A39AF1B292A449C0070813C /* HistoryLocalDataSourceMock.swift in Sources */,
+				0A39AF23292A45890070813C /* HistoryRepositoryTests.swift in Sources */,
 				0A61B6BE292944F2003263FF /* CurrencyRateRemoteDataSource.swift in Sources */,
 				0A61B6E52929453F003263FF /* DIConfiguration.swift in Sources */,
 				0A39AF13292A360E0070813C /* CurrencyRateUseCaseTests.swift in Sources */,
