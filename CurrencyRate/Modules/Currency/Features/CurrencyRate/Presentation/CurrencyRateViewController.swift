@@ -85,11 +85,13 @@ class CurrencyRateViewController: BaseViewController {
     @objc func fromDoneTapped(_ sender: Any) {
         let symbol = currencyRateViewModel.currencies.value[picker.selectedRow(inComponent: 0)]
         currencyRateViewModel.fromCurrency.accept(symbol.symbol)
+        currencyRateViewModel.convertCurrency()
     }
     
     @objc func toDoneTapped(_ sender: Any) {
         let symbol = currencyRateViewModel.currencies.value[picker.selectedRow(inComponent: 0)]
         currencyRateViewModel.toCurrency.accept(symbol.symbol)
+        currencyRateViewModel.convertCurrency()
     }
     
     @objc func gotoDetailView() {

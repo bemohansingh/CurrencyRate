@@ -45,8 +45,7 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
             let managedContext = localStorage.managedContext
             let results = try managedContext.fetch(currencyFetchRequest)
             return results
-        } catch let error as NSError {
-            print(error)
+        } catch {
             return []
         }
     }

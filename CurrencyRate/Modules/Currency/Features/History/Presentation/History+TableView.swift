@@ -27,4 +27,11 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+       let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+                   "sectionHeader") as? HistoryHeaderView
+        view?.noHistoryLabel.isHidden = !historyViewModel.histories.value.isEmpty
+       return view
+    }
 }

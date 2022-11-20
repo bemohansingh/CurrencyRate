@@ -143,7 +143,7 @@ class HistoryCell: UITableViewCell {
         
         if let latestRate = latestRate {
             self.currencyLatestLabel.text = "\(latestRate.fromSymbol):\(latestRate.toSymbol)"
-            let rate = round(latestRate.rate * 100000) / 10000
+            let rate = round(latestRate.rate * 100000) / 100000
             self.rateLatestLabel.text = "1:\(rate)"
         }
         

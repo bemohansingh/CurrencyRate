@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Charts
 
 class HistoryView: BaseView {
-    lazy var leftView: UIView = {
-        let view = UIView()
-        view.clipsToBounds = true
+    lazy var leftView: BarChartView = {
+        let view = BarChartView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightText
         return view
     }()
     
@@ -26,6 +27,8 @@ class HistoryView: BaseView {
         tableView.backgroundColor = .none
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        tableView.register(HistoryHeaderView.self,
+              forHeaderFooterViewReuseIdentifier: "sectionHeader")
         tableView.register(HistoryCell.self, forCellReuseIdentifier: String(describing: HistoryCell.self))
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView

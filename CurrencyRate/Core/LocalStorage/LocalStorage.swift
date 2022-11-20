@@ -18,7 +18,7 @@ class LocalStorage {
         let container = NSPersistentContainer(name: self.modelName)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
-                print("Unresolved error \(error), \(error.userInfo)")
+                debugPrint("Unresolved error \(error), \(error.userInfo)")
             }
         }
         return container
@@ -31,7 +31,7 @@ class LocalStorage {
         do {
             try managedContext.save()
         } catch let error as NSError {
-            print("Unresolved error \(error), \(error.userInfo)")
+            debugPrint("Unresolved error \(error), \(error.userInfo)")
         }
     }
 }

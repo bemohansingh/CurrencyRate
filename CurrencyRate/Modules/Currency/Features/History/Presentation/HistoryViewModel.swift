@@ -25,15 +25,15 @@ class HistoryViewModel: BaseViewModel {
             guard let self = self else {return}
             switch result {
             case .success(let histories):
-                self.histories.accept(histories)
-            case .failure(let error):
-                print(error)
+                self.histories.accept(histories.reversed())
+            case .failure:
+               break
             }
         }
     }
     
     func getLatestRates() {
-        getLatestUseCase.execute(currencies: ["USD:AUD", "USD:INR", "USD:NPR", "INR:NPR"]) { [weak self] result in
+        getLatestUseCase.execute(currencies: ["USD:AUD", "USD:INR", "USD:NPR", "USD:NPR", "INR:NPR"]) { [weak self] result in
             guard let self = self else {return}
             switch result {
             case .success(let rates):

@@ -45,7 +45,6 @@ struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
            
             if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff < 16 {
                 onComplete(.success(true))
-                print(diff)
                 return
                 }
             

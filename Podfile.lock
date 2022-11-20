@@ -1,4 +1,8 @@
 PODS:
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - RxBlocking (6.5.0):
     - RxSwift (= 6.5.0)
   - RxCocoa (6.5.0):
@@ -9,36 +13,38 @@ PODS:
   - RxSwift (6.5.0)
   - RxTest (6.5.0):
     - RxSwift (= 6.5.0)
-  - SwiftCharts (0.6.5)
+  - SwiftAlgorithms (1.0.0)
   - SwiftLint (0.49.1)
 
 DEPENDENCIES:
+  - Charts
   - RxBlocking (= 6.5.0)
   - RxCocoa (= 6.5.0)
   - RxSwift (= 6.5.0)
   - RxTest (= 6.5.0)
-  - SwiftCharts
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Charts
     - RxBlocking
     - RxCocoa
     - RxRelay
     - RxSwift
     - RxTest
-    - SwiftCharts
+    - SwiftAlgorithms
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   RxBlocking: 04b5fd28bb5ea49f7d64b80db8bbfe50d9cc1c7d
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
-  SwiftCharts: 2e755ea292f0b87d3e4b2c1eb5afc080a20cdc15
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftLint: 32ee33ded0636d0905ef6911b2b67bbaeeedafa5
 
-PODFILE CHECKSUM: 6ec8b1c4d48d85b298d11dc95fbb69782300e47a
+PODFILE CHECKSUM: 31f6cc875cf918dc3b887aba5572ac450b06828f
 
 COCOAPODS: 1.11.2

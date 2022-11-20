@@ -42,17 +42,11 @@ class CurrencyRateViewModel: BaseViewModel {
         fromCurrency.subscribe(onNext: {[weak self] fromCurremcy in
             guard let self = self else {return}
             self.hideCurrencyInput.accept(fromCurremcy == nil || self.toCurrency.value == nil)
-            if !self.hideCurrencyInput.value {
-                self.convertCurrency()
-            }
         }).disposed(by: bag)
         
         toCurrency.subscribe(onNext: {[weak self] toCurrency in
             guard let self = self else {return}
             self.hideCurrencyInput.accept(toCurrency == nil || self.fromCurrency.value == nil)
-            if !self.hideCurrencyInput.value {
-                self.convertCurrency()
-            }
         }).disposed(by: bag)
         
         inputCurrency.subscribe(onNext: {[weak self] inputValue in
@@ -65,7 +59,6 @@ class CurrencyRateViewModel: BaseViewModel {
     
     func updateInputCurrency(amount: Double) {
         inputCurrency.accept(amount)
-        convertCurrency()
     }
     
     func convertCurrency() {
@@ -85,8 +78,6 @@ class CurrencyRateViewModel: BaseViewModel {
                 saveHistory(fromSymbol: fromValue, toSymbol: toValue, rate: exchaneRateFactor ?? 0)
             }
         }
-       
-        convertCurrency()
     }
     
     func getCurrencies() {

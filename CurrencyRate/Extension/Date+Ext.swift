@@ -8,10 +8,12 @@
 import Foundation
 
 extension Date? {
-    func toString() -> String? {
+    func toString(isDateOnly: Bool = false) -> String? {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        formatter.timeStyle = .short
+        if !isDateOnly {
+            formatter.timeStyle = .short
+        }
         if let date = self {
             return formatter.string(from: date)
         }
