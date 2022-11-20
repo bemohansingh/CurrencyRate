@@ -31,8 +31,10 @@ struct NetworkClient: NetworkService {
                 } else if let error = error {
                     onError(APIError.parseError(httpResponse.statusCode, error.localizedDescription))
                 }
+            } else if let error = error {
+                onError(APIError.unknown(error.localizedDescription))
             } else {
-                onError(APIError.unknown)
+                onError(APIError.unknown("Invalid Request."))
             }
         }
         

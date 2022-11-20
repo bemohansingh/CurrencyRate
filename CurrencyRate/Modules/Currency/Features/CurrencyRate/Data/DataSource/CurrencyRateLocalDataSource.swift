@@ -62,7 +62,8 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
             currencyRateModels.append(currencyRateModel)
         }
         localStorage.saveContext()
-        
+        UserDefaults.standard.setValue(Date(), forKey: "sync_date")
+        UserDefaults.standard.synchronize()
         return currencyRateModels
     }
     
@@ -132,6 +133,6 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
     }
     
     func getCurrencyRateUpdatedDate() -> Date? {
-        return Date()
+        return UserDefaults.standard.value(forKey: "sync_date") as? Date
     }
 }

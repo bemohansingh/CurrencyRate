@@ -100,7 +100,7 @@ class CurrencyRateViewModel: BaseViewModel {
             case .success(let currencies):
                 self.currencies.accept(currencies)
             case .failure(let error):
-                self.errorFound.onNext(error.localizedDescription)
+                self.errorFound.onNext(error.getMessage())
             }
         }
     }
@@ -115,7 +115,7 @@ class CurrencyRateViewModel: BaseViewModel {
             self.isRateFetching = false
             switch result {
             case .failure(let error):
-                self.errorFound.onNext(error.localizedDescription)
+                self.errorFound.onNext(error.getMessage())
             case .success:
                 break
             }
@@ -131,7 +131,7 @@ class CurrencyRateViewModel: BaseViewModel {
                 self.inputCurrency.accept(1)
                 self.saveHistory(fromSymbol: fromSymbol, toSymbol: toSymbol, rate: rate)
             case .failure(let error):
-                self.errorFound.onNext(error.localizedDescription)
+                self.errorFound.onNext(error.getMessage())
             }
         })
     }
