@@ -113,6 +113,7 @@
 		0A7778322929020D008AF30B /* CurrencyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7778312929020D008AF30B /* CurrencyEntity.swift */; };
 		0A77783529290BB9008AF30B /* DIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77783429290BB9008AF30B /* DIConfiguration.swift */; };
 		0A77783729291050008AF30B /* CurrencyRateLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77783629291050008AF30B /* CurrencyRateLocalDataSource.swift */; };
+		0AB7D83A2929D59D0078084B /* SaveHistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7D8392929D59D0078084B /* SaveHistoryUseCase.swift */; };
 		35A4CDF58AD4F355BDA69F60 /* Pods_CurrencyRate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7578C70CC10B2AD745546EE1 /* Pods_CurrencyRate.framework */; };
 		5A40022A509938DAD58CF1BD /* Pods_CurrencyRate_CurrencyRateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C73F1CA94F66A891F4682206 /* Pods_CurrencyRate_CurrencyRateUITests.framework */; };
 		83D41F0703F7D53BA502FC61 /* Pods_CurrencyRateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238C38A60170EA13D2196E8A /* Pods_CurrencyRateTests.framework */; };
@@ -179,6 +180,7 @@
 		0A7778312929020D008AF30B /* CurrencyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyEntity.swift; sourceTree = "<group>"; };
 		0A77783429290BB9008AF30B /* DIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIConfiguration.swift; sourceTree = "<group>"; };
 		0A77783629291050008AF30B /* CurrencyRateLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRateLocalDataSource.swift; sourceTree = "<group>"; };
+		0AB7D8392929D59D0078084B /* SaveHistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveHistoryUseCase.swift; sourceTree = "<group>"; };
 		238C38A60170EA13D2196E8A /* Pods_CurrencyRateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyRateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4387C545E0DB3E549DF84B63 /* Pods-CurrencyRate-CurrencyRateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyRate-CurrencyRateUITests.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4721512FF385562965BAF292 /* Pods-CurrencyRate-CurrencyRateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyRate-CurrencyRateUITests.release.xcconfig"; path = "Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				0A7778142927E894008AF30B /* GetCurrenciesUseCase.swift */,
 				0A61B6B429293C7C003263FF /* SaveCurrencyRatesFromRemoteUseCase.swift */,
 				0A61B6B629293CE6003263FF /* GetCurrencyRateUseCase.swift */,
+				0AB7D8392929D59D0078084B /* SaveHistoryUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				0A1CC33E2927805E00B63CBE /* CurrencyPickerView.swift in Sources */,
 				0A7778152927E894008AF30B /* GetCurrenciesUseCase.swift in Sources */,
 				0A7778032927D505008AF30B /* RequestApi.swift in Sources */,
+				0AB7D83A2929D59D0078084B /* SaveHistoryUseCase.swift in Sources */,
 				0A77781B2927EB01008AF30B /* CurrencyRateRepository.swift in Sources */,
 				0A61B6AE2929378F003263FF /* HistoryModel+CoreDataClass.swift in Sources */,
 				0A7778212928DEAA008AF30B /* CurrencyRateRemoteDataSource.swift in Sources */,

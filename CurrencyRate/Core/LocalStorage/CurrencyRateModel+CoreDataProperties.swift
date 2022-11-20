@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CurrencyRateModel {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CurrencyRateModel> {
@@ -22,6 +21,5 @@ extension CurrencyRateModel {
 
 }
 
-extension CurrencyRateModel : Identifiable {
-
+extension CurrencyRateModel: Identifiable {
 }

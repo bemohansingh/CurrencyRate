@@ -14,6 +14,7 @@ class CurrencyRateViewModel: BaseViewModel {
     let getCurrenciesUseCase: GetCurrenciesUseCaseProtocol
     let saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol
     let getCurrencyRate: GetCurrencyRateUseCaseProtocol
+    let saveHistoryUseCase: SaveHistoryUseCaseProtocol
     
     let hideCurrencyInput = BehaviorRelay<Bool>(value: true)
     let fromCurrency = BehaviorRelay<String?>(value: nil)
@@ -28,10 +29,11 @@ class CurrencyRateViewModel: BaseViewModel {
     var isCurrenciesFetching = false
     var isRateFetching = false
     
-    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol, saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol, getCurrencyRate: GetCurrencyRateUseCaseProtocol) {
+    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol, saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol, getCurrencyRate: GetCurrencyRateUseCaseProtocol, saveHistoryUseCase: SaveHistoryUseCaseProtocol) {
         self.getCurrenciesUseCase = getCurrenciesUseCase
         self.saveCurrencyRates = saveCurrencyRates
         self.getCurrencyRate = getCurrencyRate
+        self.saveHistoryUseCase = saveHistoryUseCase
         super.init()
         self.observeEvents()
     }
@@ -79,6 +81,9 @@ class CurrencyRateViewModel: BaseViewModel {
         if let rate = exchaneRateFactor, rate > 0 {
             exchaneRateFactor = 1 / rate
             inputCurrency.accept(1)
+            if let fromValue = fromCurrency.value, let toValue = toCurrency.value {
+                saveHistory(fromSymbol: fromValue, toSymbol: toValue, rate: exchaneRateFactor ?? 0)
+            }
         }
        
         convertCurrency()
@@ -124,9 +129,16 @@ class CurrencyRateViewModel: BaseViewModel {
             case .success(let rate):
                 self.exchaneRateFactor = rate
                 self.inputCurrency.accept(1)
+                self.saveHistory(fromSymbol: fromSymbol, toSymbol: toSymbol, rate: rate)
             case .failure(let error):
                 self.errorFound.onNext(error.localizedDescription)
             }
         })
+    }
+    
+    func saveHistory(fromSymbol: String, toSymbol: String, rate: Double) {
+        saveHistoryUseCase.execute(fromSymbol: fromSymbol, toSymbol: toSymbol, rate: rate) { _ in
+            
+        }
     }
 }

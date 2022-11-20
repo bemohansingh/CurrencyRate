@@ -15,7 +15,7 @@ struct GetCurrencyRateUseCase: GetCurrencyRateUseCaseProtocol {
     let currencyRateRepository: CurrencyRateRepositoryProtocol
     
     func execute(fromSymbol: String, toSymbol: String, onComplete: @escaping (Result<Double, Error>) -> Void) {
-        currencyRateRepository.getCurrencyRate(fromSybol: fromSymbol, toSymbol: toSymbol) { result in
+        currencyRateRepository.getCurrencyRate(fromSymbol: fromSymbol, toSymbol: toSymbol) { result in
             onComplete(result)
         }
     }

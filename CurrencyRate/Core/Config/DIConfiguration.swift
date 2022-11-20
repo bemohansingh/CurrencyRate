@@ -31,6 +31,7 @@ struct DIContainer {
         let getCurrencyUseCase = GetCurrenciesUseCase(currencyRateRepository: getCurrencyRateRepository())
         let saveCurrencyRates = SaveCurrencyRatesFromRemoteUseCase(currencyRateRepository: getCurrencyRateRepository())
         let getCurrencyRate = GetCurrencyRateUseCase(currencyRateRepository: getCurrencyRateRepository())
-        return CurrencyRateViewModel(getCurrenciesUseCase: getCurrencyUseCase, saveCurrencyRates: saveCurrencyRates, getCurrencyRate: getCurrencyRate)
+        let saveHistoryUseCase = SaveHistoryUseCase(currencyRateRepository: getCurrencyRateRepository())
+        return CurrencyRateViewModel(getCurrenciesUseCase: getCurrencyUseCase, saveCurrencyRates: saveCurrencyRates, getCurrencyRate: getCurrencyRate, saveHistoryUseCase: saveHistoryUseCase)
     }
 }

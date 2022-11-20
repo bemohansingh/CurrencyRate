@@ -11,7 +11,8 @@ protocol CurrencyRateRepositoryProtocol {
     func getCurrencies(onComplete: @escaping(Result<[CurrencyModel], Error>) -> Void)
     func saveCurrenciesToLocalStorage(currencies: CurrencyResponseEntity) -> [CurrencyModel]
     func saveCurrencyRatesFromRemote(baseCurrencySymbol: String, onComplete: @escaping(Result<Bool, Error>) -> Void)
-    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void)
+    func getCurrencyRate(fromSymbol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void)
+    func saveHistory(fromSymbol: String, toSymbol: String, rate: Double, onComplete: @escaping(Result<Bool, Error>) -> Void)
 }
 
 struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
@@ -43,9 +44,9 @@ struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
         if let date = currencyRateLocalDataSource.getCurrencyRateUpdatedDate() {
            
             if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff < 16 {
-                onComplete(.success(true))
-                print(diff)
-                return
+//                onComplete(.success(true))
+//                print(diff)
+//                return
                 }
             
         }
@@ -60,9 +61,15 @@ struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
         }
     }
     
-    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void) {
-        currencyRateLocalDataSource.getCurrencyRate(fromSybol: fromSybol, toSymbol: toSymbol) { result in
+    func getCurrencyRate(fromSymbol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void) {
+        currencyRateLocalDataSource.getCurrencyRate(fromSymbol: fromSymbol, toSymbol: toSymbol) { result in
             onComplete(result)
         }
+    }
+    
+    func saveHistory(fromSymbol: String, toSymbol: String, rate: Double, onComplete: @escaping (Result<Bool, Error>) -> Void) {
+        currencyRateLocalDataSource.saveCurrencyRateSearchHistory(fromSymbol: fromSymbol, toSymbol: toSymbol, rate: rate, onComplete: {result in
+            onComplete(result)
+        })
     }
 }

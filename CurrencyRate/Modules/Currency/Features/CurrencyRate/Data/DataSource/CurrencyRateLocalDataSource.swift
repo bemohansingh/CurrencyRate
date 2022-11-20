@@ -12,9 +12,9 @@ protocol CurrencyRateLocalDataSourceProtocol {
     func saveCurrencies(currencies: CurrencyResponseEntity) -> [CurrencyModel]
     func getCurrencies() -> [CurrencyModel]
     func saveCurrencyRates(currencyRates: CurrencyRateResponseEntity) -> [CurrencyRateModel]
-    func saveCurrencyRateSearchHistory()
+    func saveCurrencyRateSearchHistory(fromSymbol: String, toSymbol: String, rate: Double, onComplete: @escaping (Result<Bool, Error>) -> Void)
     func getCurrencyRateUpdatedDate() -> Date?
-    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void)
+    func getCurrencyRate(fromSymbol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void)
 }
 
 struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
@@ -66,14 +66,22 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
         return currencyRateModels
     }
     
-    func saveCurrencyRateSearchHistory() {
+    func saveCurrencyRateSearchHistory(fromSymbol: String, toSymbol: String, rate: Double, onComplete: @escaping (Result<Bool, Error>) -> Void) {
+        let object = localStorage.managedContext
+        let history = HistoryModel(context: object)
+        history.toSymbol = toSymbol
+        history.fromSymbol = fromSymbol
+        history.toRate = rate
+        history.createdAt = Date()
+        localStorage.saveContext()
         
+        return onComplete(.success(true))
     }
     
-    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void) {
+    func getCurrencyRate(fromSymbol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void) {
         var fromRate: Double
         var toRate: Double
-        switch getRate(symbol: fromSybol, isFrom: true) {
+        switch getRate(symbol: fromSymbol, isFrom: true) {
         case .success(let rate):
             fromRate = rate.rate
         case .failure(let error):

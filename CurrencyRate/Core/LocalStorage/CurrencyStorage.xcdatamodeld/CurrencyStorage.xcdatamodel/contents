@@ -11,8 +11,8 @@
     </entity>
     <entity name="HistoryModel" representedClassName="HistoryModel" syncable="YES">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="fromSymbol" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fromSymbol" attributeType="String"/>
         <attribute name="toRate" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="toSymbol" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="toSymbol" attributeType="String"/>
     </entity>
 </model>

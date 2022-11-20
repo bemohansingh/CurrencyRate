@@ -9,20 +9,18 @@
 import Foundation
 import CoreData
 
-
 extension HistoryModel {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<HistoryModel> {
         return NSFetchRequest<HistoryModel>(entityName: "HistoryModel")
     }
 
-    @NSManaged public var fromSymbol: Double
-    @NSManaged public var toSymbol: Double
+    @NSManaged public var fromSymbol: String
+    @NSManaged public var toSymbol: String
     @NSManaged public var toRate: Double
     @NSManaged public var createdAt: Date?
 
 }
 
-extension HistoryModel : Identifiable {
-
+extension HistoryModel: Identifiable {
 }
