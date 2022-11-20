@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import RxCocoa
 import RxSwift
+import RxCocoa
 
 class CurrencyRateViewModel: BaseViewModel {
     
@@ -21,9 +21,12 @@ class CurrencyRateViewModel: BaseViewModel {
     
     let inputCurrency = BehaviorRelay<Double>(value: 1)
     let outputCurrency = BehaviorRelay<Double>(value: 0)
+    var exchaneRateFactor: Double?
     
     let currencies = BehaviorRelay<[CurrencyModel]>(value: [])
     let errorFound = PublishSubject<String>()
+    var isCurrenciesFetching = false
+    var isRateFetching = false
     
     init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol, saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol, getCurrencyRate: GetCurrencyRateUseCaseProtocol) {
         self.getCurrenciesUseCase = getCurrenciesUseCase
@@ -49,6 +52,13 @@ class CurrencyRateViewModel: BaseViewModel {
                 self.convertCurrency()
             }
         }).disposed(by: bag)
+        
+        inputCurrency.subscribe(onNext: {[weak self] inputValue in
+            guard let self = self else {return}
+            let outPutRate = (self.exchaneRateFactor ?? 0) * inputValue
+            
+            self.outputCurrency.accept(round(outPutRate * 100000) / 100000)
+        }).disposed(by: bag)
     }
     
     func updateInputCurrency(amount: Double) {
@@ -57,17 +67,28 @@ class CurrencyRateViewModel: BaseViewModel {
     }
     
     func convertCurrency() {
-        outputCurrency.accept(inputCurrency.value)
+        if let fromValue = fromCurrency.value, let toValue = toCurrency.value {
+            getCurrencyRate(fromSymbol: fromValue, toSymbol: toValue)
+        }
     }
     
     func switchCurrency() {
         let toCurrencyTemp = toCurrency.value
         toCurrency.accept(fromCurrency.value)
         fromCurrency.accept(toCurrencyTemp)
+        if let rate = exchaneRateFactor, rate > 0 {
+            exchaneRateFactor = 1 / rate
+            inputCurrency.accept(1)
+        }
+       
         convertCurrency()
     }
     
     func getCurrencies() {
+        if isCurrenciesFetching {
+            return
+        }
+        isCurrenciesFetching = true
         getCurrenciesUseCase.execute {[weak self] result in
             guard let self = self else {return}
             switch result {
@@ -80,7 +101,32 @@ class CurrencyRateViewModel: BaseViewModel {
     }
     
     func getCurrencyRates(baseCurrencySymbol: String) {
-        saveCurrencyRates.execute(baseCurrencySymbol: baseCurrencySymbol) { _ in
+        if isRateFetching {
+            return
         }
+        isRateFetching = true
+        saveCurrencyRates.execute(baseCurrencySymbol: baseCurrencySymbol) { [weak self] result in
+            guard let self = self else {return}
+            self.isRateFetching = false
+            switch result {
+            case .failure(let error):
+                self.errorFound.onNext(error.localizedDescription)
+            case .success:
+                break
+            }
+        }
+    }
+    
+    func getCurrencyRate(fromSymbol: String, toSymbol: String) {
+        getCurrencyRate.execute(fromSymbol: fromSymbol, toSymbol: toSymbol, onComplete: { [weak self] result in
+            guard let self = self else {return}
+            switch result {
+            case .success(let rate):
+                self.exchaneRateFactor = rate
+                self.inputCurrency.accept(1)
+            case .failure(let error):
+                self.errorFound.onNext(error.localizedDescription)
+            }
+        })
     }
 }

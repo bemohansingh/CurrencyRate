@@ -7,17 +7,16 @@
 
 import Foundation
 
-
 protocol GetCurrencyRateUseCaseProtocol {
-    func execute(onComplete: @escaping (Result<Bool, Error>) -> Void)
+    func execute(fromSymbol: String, toSymbol: String, onComplete: @escaping (Result<Double, Error>) -> Void)
 }
 
 struct GetCurrencyRateUseCase: GetCurrencyRateUseCaseProtocol {
     let currencyRateRepository: CurrencyRateRepositoryProtocol
     
-    func execute(onComplete: @escaping (Result<Bool, Error>) -> Void) {
-        currencyRateRepository.getCurrencies { result in
-            
+    func execute(fromSymbol: String, toSymbol: String, onComplete: @escaping (Result<Double, Error>) -> Void) {
+        currencyRateRepository.getCurrencyRate(fromSybol: fromSymbol, toSymbol: toSymbol) { result in
+            onComplete(result)
         }
     }
 }

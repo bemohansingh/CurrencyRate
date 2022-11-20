@@ -11,6 +11,7 @@ protocol CurrencyRateRepositoryProtocol {
     func getCurrencies(onComplete: @escaping(Result<[CurrencyModel], Error>) -> Void)
     func saveCurrenciesToLocalStorage(currencies: CurrencyResponseEntity) -> [CurrencyModel]
     func saveCurrencyRatesFromRemote(baseCurrencySymbol: String, onComplete: @escaping(Result<Bool, Error>) -> Void)
+    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void)
 }
 
 struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
@@ -39,7 +40,15 @@ struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
     }
     
     func saveCurrencyRatesFromRemote(baseCurrencySymbol: String, onComplete: @escaping(Result<Bool, Error>) -> Void) {
-        
+        if let date = currencyRateLocalDataSource.getCurrencyRateUpdatedDate() {
+           
+            if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff < 16 {
+                onComplete(.success(true))
+                print(diff)
+                return
+                }
+            
+        }
         currencyRateRemoteDataSource.gerCurrencyRate(defaultCurrency: baseCurrencySymbol) { result in
             switch result {
             case .success(let entity):
@@ -48,6 +57,12 @@ struct CurrencyRateRepository: CurrencyRateRepositoryProtocol {
             case .failure(let error):
                 onComplete(.failure(error))
             }
+        }
+    }
+    
+    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void) {
+        currencyRateLocalDataSource.getCurrencyRate(fromSybol: fromSybol, toSymbol: toSymbol) { result in
+            onComplete(result)
         }
     }
 }

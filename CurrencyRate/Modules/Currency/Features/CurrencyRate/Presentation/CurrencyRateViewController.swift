@@ -49,12 +49,19 @@ class CurrencyRateViewController: BaseViewController {
         currencyRateViewModel.toCurrency.bind(to: currencyRateView.toTextField.rx.text).disposed(by: currencyRateViewModel.bag)
         
         currencyRateViewModel.hideCurrencyInput.map({!$0}).bind(to: currencyRateView.switchCurrencyButton.rx.isEnabled).disposed(by: currencyRateViewModel.bag)
+        inputOutputRateObserveTextField()
         observeData()
+    }
+    
+    func inputOutputRateObserveTextField() {
+        currencyRateView.inputCurrencyTextField.delegate = self
+        currencyRateViewModel.outputCurrency.map({"\($0)"}).bind(to: currencyRateView.outputCurrencyTextField.rx.text).disposed(by: currencyRateViewModel.bag)
     }
     
     private func observeData() {
         currencyRateViewModel.currencies.skip(1).subscribe { [weak self] _ in
             guard let self = self else {return}
+            self.currencyRateViewModel.isCurrenciesFetching = false
             DispatchQueue.main.async {
                 if self.requestedTextField == .fromTextField {
                     self.currencyRateView.fromTextField.becomeFirstResponder()
@@ -66,6 +73,7 @@ class CurrencyRateViewController: BaseViewController {
         
         currencyRateViewModel.errorFound.subscribe { [weak self] message in
             guard let self = self else {return}
+            self.currencyRateViewModel.isCurrenciesFetching = false
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -90,12 +98,13 @@ class CurrencyRateViewController: BaseViewController {
     
     @objc func switchCurrencyTapped() {
         currencyRateViewModel.switchCurrency()
+        currencyRateView.inputCurrencyTextField.text = "1"
     }
 }
 
 extension CurrencyRateViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if currencyRateViewModel.currencies.value.isEmpty {
+        if currencyRateViewModel.currencies.value.isEmpty && textField != currencyRateView.inputCurrencyTextField {
             if textField == currencyRateView.fromTextField {
                 requestedTextField = .fromTextField
             } else if textField == currencyRateView.toTextField {
@@ -106,6 +115,24 @@ extension CurrencyRateViewController: UITextFieldDelegate {
             currencyRateViewModel.getCurrencies()
             return false
         }
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == currencyRateView.inputCurrencyTextField {
+            if let text = textField.text,
+               let textRange = Range(range, in: text) {
+                let updatedText = text.replacingCharacters(in: textRange,
+                                                           with: string)
+                let rate: Double = Double(updatedText) ?? 1
+                currencyRateViewModel.inputCurrency.accept(rate)
+            }
+        }
+        
         return true
     }
 }

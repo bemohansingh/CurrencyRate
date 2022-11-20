@@ -13,7 +13,8 @@ protocol CurrencyRateLocalDataSourceProtocol {
     func getCurrencies() -> [CurrencyModel]
     func saveCurrencyRates(currencyRates: CurrencyRateResponseEntity) -> [CurrencyRateModel]
     func saveCurrencyRateSearchHistory()
-    func getCurrencyRate(fromSymbol: String, toSymbol: String)
+    func getCurrencyRateUpdatedDate() -> Date?
+    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void)
 }
 
 struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
@@ -39,15 +40,15 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
     
     func getCurrencies() -> [CurrencyModel] {
         let currencyFetchRequest: NSFetchRequest<CurrencyModel> = CurrencyModel.fetchRequest()
-          
-           do {
-               let managedContext = localStorage.managedContext
-               let results = try managedContext.fetch(currencyFetchRequest)
-               return results
-           } catch let error as NSError {
-               print(error)
-               return []
-           }
+        
+        do {
+            let managedContext = localStorage.managedContext
+            let results = try managedContext.fetch(currencyFetchRequest)
+            return results
+        } catch let error as NSError {
+            print(error)
+            return []
+        }
     }
     
     func saveCurrencyRates(currencyRates: CurrencyRateResponseEntity) -> [CurrencyRateModel] {
@@ -69,8 +70,60 @@ struct CurrencyRateLocalDataSource: CurrencyRateLocalDataSourceProtocol {
         
     }
     
-    func getCurrencyRate(fromSymbol: String, toSymbol: String) {
+    func getCurrencyRate(fromSybol: String, toSymbol: String, onComplete: @escaping(Result<Double, Error>) -> Void) {
+        var fromRate: Double
+        var toRate: Double
+        switch getRate(symbol: fromSybol, isFrom: true) {
+        case .success(let rate):
+            fromRate = rate.rate
+        case .failure(let error):
+            onComplete(.failure(error))
+            return
+        }
         
+        switch getRate(symbol: toSymbol, isFrom: false) {
+        case .success(let rate):
+            toRate = rate.rate
+        case .failure(let error):
+            onComplete(.failure(error))
+            return
+        }
+        
+        onComplete(.success(toRate/fromRate))
     }
-
+    
+    /// Get Base Currency Rate
+    private func getBaseRate() -> Result<CurrencyRateModel, Error> {
+        let currencyFetchRequest: NSFetchRequest<CurrencyRateModel> = CurrencyRateModel.fetchRequest()
+        currencyFetchRequest.predicate = NSPredicate(format: "isBase == %@", true)
+        do {
+            let managedContext = localStorage.managedContext
+            if let result = try managedContext.fetch(currencyFetchRequest).first {
+                return .success(result)
+            } else {
+                return .failure(AppError.custom("Unable to find base rate."))
+            }
+        } catch let error as NSError {
+            return .failure(error)
+        }
+    }
+    
+    private func getRate(symbol: String, isFrom: Bool) -> Result<CurrencyRateModel, Error> {
+        let currencyFetchRequest: NSFetchRequest<CurrencyRateModel> = CurrencyRateModel.fetchRequest()
+        currencyFetchRequest.predicate = NSPredicate(format: "symbol == %@", symbol)
+        do {
+            let managedContext = localStorage.managedContext
+            if let result = try managedContext.fetch(currencyFetchRequest).first {
+                return .success(result)
+            } else {
+                return .failure(AppError.custom(isFrom ? "invalid from symbol." : "invalid to symbol."))
+            }
+        } catch let error as NSError {
+            return .failure(error)
+        }
+    }
+    
+    func getCurrencyRateUpdatedDate() -> Date? {
+        return Date()
+    }
 }
