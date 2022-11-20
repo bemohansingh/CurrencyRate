@@ -117,6 +117,14 @@
 		0AB7D83E2929DD440078084B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7D83D2929DD440078084B /* HistoryViewController.swift */; };
 		0AB7D8402929DD530078084B /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7D83F2929DD530078084B /* HistoryView.swift */; };
 		0AB7D8422929DD5F0078084B /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7D8412929DD5F0078084B /* HistoryViewModel.swift */; };
+		0AEDD8EC2929E3E500FA485C /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD8EB2929E3E500FA485C /* HistoryCell.swift */; };
+		0AEDD8F02929E7B800FA485C /* History+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD8EF2929E7B800FA485C /* History+TableView.swift */; };
+		0AEDD8F42929E99100FA485C /* GetHistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD8F32929E99100FA485C /* GetHistoryUseCase.swift */; };
+		0AEDD8F72929EA2600FA485C /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD8F62929EA2600FA485C /* HistoryRepository.swift */; };
+		0AEDD8FB2929EAE300FA485C /* HistoryLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD8FA2929EAE300FA485C /* HistoryLocalDataSource.swift */; };
+		0AEDD8FE2929F3E900FA485C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD8FD2929F3E900FA485C /* Date+Ext.swift */; };
+		0AEDD9012929FB2100FA485C /* LatestRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD9002929FB2100FA485C /* LatestRateModel.swift */; };
+		0AEDD9032929FCE400FA485C /* GetLatestRateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEDD9022929FCE400FA485C /* GetLatestRateUseCase.swift */; };
 		35A4CDF58AD4F355BDA69F60 /* Pods_CurrencyRate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7578C70CC10B2AD745546EE1 /* Pods_CurrencyRate.framework */; };
 		5A40022A509938DAD58CF1BD /* Pods_CurrencyRate_CurrencyRateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C73F1CA94F66A891F4682206 /* Pods_CurrencyRate_CurrencyRateUITests.framework */; };
 		83D41F0703F7D53BA502FC61 /* Pods_CurrencyRateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238C38A60170EA13D2196E8A /* Pods_CurrencyRateTests.framework */; };
@@ -187,6 +195,14 @@
 		0AB7D83D2929DD440078084B /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0AB7D83F2929DD530078084B /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		0AB7D8412929DD5F0078084B /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		0AEDD8EB2929E3E500FA485C /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		0AEDD8EF2929E7B800FA485C /* History+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+TableView.swift"; sourceTree = "<group>"; };
+		0AEDD8F32929E99100FA485C /* GetHistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHistoryUseCase.swift; sourceTree = "<group>"; };
+		0AEDD8F62929EA2600FA485C /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
+		0AEDD8FA2929EAE300FA485C /* HistoryLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryLocalDataSource.swift; sourceTree = "<group>"; };
+		0AEDD8FD2929F3E900FA485C /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		0AEDD9002929FB2100FA485C /* LatestRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRateModel.swift; sourceTree = "<group>"; };
+		0AEDD9022929FCE400FA485C /* GetLatestRateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestRateUseCase.swift; sourceTree = "<group>"; };
 		238C38A60170EA13D2196E8A /* Pods_CurrencyRateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyRateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4387C545E0DB3E549DF84B63 /* Pods-CurrencyRate-CurrencyRateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyRate-CurrencyRateUITests.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4721512FF385562965BAF292 /* Pods-CurrencyRate-CurrencyRateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyRate-CurrencyRateUITests.release.xcconfig"; path = "Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +272,7 @@
 		0A1CC2EF2927682B00B63CBE /* CurrencyRate */ = {
 			isa = PBXGroup;
 			children = (
+				0AEDD8FC2929F3D500FA485C /* Extension */,
 				0A1CC3232927725200B63CBE /* Modules */,
 				0A1CC3222927724300B63CBE /* Core */,
 				0A1CC32129276A4A00B63CBE /* Support */,
@@ -462,6 +479,9 @@
 		0AB7D83B2929DD220078084B /* History */ = {
 			isa = PBXGroup;
 			children = (
+				0AEDD8FF2929FB1400FA485C /* Model */,
+				0AEDD8F82929EABE00FA485C /* Data */,
+				0AEDD8F12929E97500FA485C /* Domain */,
 				0AB7D83C2929DD310078084B /* Presentation */,
 			);
 			path = History;
@@ -470,11 +490,79 @@
 		0AB7D83C2929DD310078084B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0AB7D8432929E3B70078084B /* Cell */,
 				0AB7D83D2929DD440078084B /* HistoryViewController.swift */,
 				0AB7D83F2929DD530078084B /* HistoryView.swift */,
 				0AB7D8412929DD5F0078084B /* HistoryViewModel.swift */,
+				0AEDD8EF2929E7B800FA485C /* History+TableView.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		0AB7D8432929E3B70078084B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8EB2929E3E500FA485C /* HistoryCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0AEDD8F12929E97500FA485C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8F52929EA0800FA485C /* Repository */,
+				0AEDD8F22929E97B00FA485C /* UseCase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0AEDD8F22929E97B00FA485C /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8F32929E99100FA485C /* GetHistoryUseCase.swift */,
+				0AEDD9022929FCE400FA485C /* GetLatestRateUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		0AEDD8F52929EA0800FA485C /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8F62929EA2600FA485C /* HistoryRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		0AEDD8F82929EABE00FA485C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8F92929EACF00FA485C /* DataSource */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0AEDD8F92929EACF00FA485C /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8FA2929EAE300FA485C /* HistoryLocalDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		0AEDD8FC2929F3D500FA485C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD8FD2929F3E900FA485C /* Date+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0AEDD8FF2929FB1400FA485C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0AEDD9002929FB2100FA485C /* LatestRateModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1BD17AB1777189FA3F3C800D /* Pods */ = {
@@ -512,6 +600,7 @@
 				0A1CC2EA2927682B00B63CBE /* Frameworks */,
 				0A1CC2EB2927682B00B63CBE /* Resources */,
 				0A1CC32029276A1300B63CBE /* ShellScript */,
+				E365E05CE1B32C58A339B419 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -559,6 +648,7 @@
 				0A1CC3092927682D00B63CBE /* Sources */,
 				0A1CC30A2927682D00B63CBE /* Frameworks */,
 				0A1CC30B2927682D00B63CBE /* Resources */,
+				54919978251A01DA6205BBB4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -683,6 +773,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		54919978251A01DA6205BBB4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CurrencyRate-CurrencyRateUITests/Pods-CurrencyRate-CurrencyRateUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C40BFA2177A6D4B0C476AB54 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -703,6 +810,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E365E05CE1B32C58A339B419 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CurrencyRate/Pods-CurrencyRate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CurrencyRate/Pods-CurrencyRate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CurrencyRate/Pods-CurrencyRate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E696C32FF419AD1F9EFCD326 /* [CP] Check Pods Manifest.lock */ = {
@@ -744,10 +868,13 @@
 				0A7778152927E894008AF30B /* GetCurrenciesUseCase.swift in Sources */,
 				0A7778032927D505008AF30B /* RequestApi.swift in Sources */,
 				0AB7D83A2929D59D0078084B /* SaveHistoryUseCase.swift in Sources */,
+				0AEDD8FB2929EAE300FA485C /* HistoryLocalDataSource.swift in Sources */,
+				0AEDD8F72929EA2600FA485C /* HistoryRepository.swift in Sources */,
 				0A77781B2927EB01008AF30B /* CurrencyRateRepository.swift in Sources */,
 				0A61B6AE2929378F003263FF /* HistoryModel+CoreDataClass.swift in Sources */,
 				0A7778212928DEAA008AF30B /* CurrencyRateRemoteDataSource.swift in Sources */,
 				0A1CC3292927735F00B63CBE /* CurrencyRateViewController.swift in Sources */,
+				0AEDD8F42929E99100FA485C /* GetHistoryUseCase.swift in Sources */,
 				0A1CC332292773E400B63CBE /* BaseViewModel.swift in Sources */,
 				0A77783729291050008AF30B /* CurrencyRateLocalDataSource.swift in Sources */,
 				0A1CC2F32927682B00B63CBE /* SceneDelegate.swift in Sources */,
@@ -760,17 +887,22 @@
 				0A1CC32B2927736F00B63CBE /* CurrencyRateView.swift in Sources */,
 				0AB7D8422929DD5F0078084B /* HistoryViewModel.swift in Sources */,
 				0A61B6B729293CE6003263FF /* GetCurrencyRateUseCase.swift in Sources */,
+				0AEDD8F02929E7B800FA485C /* History+TableView.swift in Sources */,
+				0AEDD9012929FB2100FA485C /* LatestRateModel.swift in Sources */,
 				0AB7D8402929DD530078084B /* HistoryView.swift in Sources */,
 				0A1CC32D2927737700B63CBE /* CurrencyRateViewModel.swift in Sources */,
 				0A61B6B32929378F003263FF /* CurrencyModel+CoreDataProperties.swift in Sources */,
 				0A61B6A529292B08003263FF /* CurrencyStorage.xcdatamodeld in Sources */,
+				0AEDD8EC2929E3E500FA485C /* HistoryCell.swift in Sources */,
 				0A7778072927D86F008AF30B /* NetworkConfiguration.swift in Sources */,
 				0A61B6B529293C7C003263FF /* SaveCurrencyRatesFromRemoteUseCase.swift in Sources */,
 				0A61B6B12929378F003263FF /* CurrencyRateModel+CoreDataProperties.swift in Sources */,
+				0AEDD8FE2929F3E900FA485C /* Date+Ext.swift in Sources */,
 				0A61B6B22929378F003263FF /* CurrencyModel+CoreDataClass.swift in Sources */,
 				0A7778322929020D008AF30B /* CurrencyEntity.swift in Sources */,
 				0AB7D83E2929DD440078084B /* HistoryViewController.swift in Sources */,
 				0A61B6B929293F60003263FF /* CurrencyRateEntity.swift in Sources */,
+				0AEDD9032929FCE400FA485C /* GetLatestRateUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,16 @@ class HistoryView: BaseView {
         return view
     }()
     
+    lazy var historyTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .none
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.register(HistoryCell.self, forCellReuseIdentifier: String(describing: HistoryCell.self))
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     var landscapeConstraints: [NSLayoutConstraint] = []
     var potraitConstraints: [NSLayoutConstraint] = []
     
@@ -27,29 +37,37 @@ class HistoryView: BaseView {
         backgroundColor = .white
         addSubview(leftView)
         addSubview(rightView)
-        landscapeConstraints = [self.leftView.topAnchor.constraint(equalTo: self.topAnchor),
-                                self.leftView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                                self.leftView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                                self.leftView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.34),
-                                self.rightView.topAnchor.constraint(equalTo: self.topAnchor),
+        rightView.addSubview(historyTableView)
+        landscapeConstraints = [self.leftView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                                self.leftView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+                                self.leftView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+                                self.leftView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.34),
+                                self.rightView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                                 self.rightView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor),
-                                self.rightView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                                self.rightView.trailingAnchor.constraint(equalTo: self.trailingAnchor)]
+                                self.rightView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+                                self.rightView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)]
         
-        potraitConstraints = [self.leftView.topAnchor.constraint(equalTo: self.topAnchor),
-                              self.leftView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                              self.leftView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                              self.leftView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.34),
+        potraitConstraints = [self.leftView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                              self.leftView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+                              self.leftView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+                              self.leftView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.34),
                               self.rightView.topAnchor.constraint(equalTo: leftView.bottomAnchor),
-                              self.rightView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                              self.rightView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                              self.rightView.bottomAnchor.constraint(equalTo: self.bottomAnchor)]
+                              self.rightView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+                              self.rightView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+                              self.rightView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)]
         
         if traitCollection.verticalSizeClass == .compact {
             NSLayoutConstraint.activate(landscapeConstraints)
         } else {
             NSLayoutConstraint.activate(potraitConstraints)
         }
+        
+        NSLayoutConstraint.activate([
+            self.historyTableView.topAnchor.constraint(equalTo: rightView.topAnchor),
+            self.historyTableView.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            self.historyTableView.trailingAnchor.constraint(equalTo: rightView.trailingAnchor),
+            self.historyTableView.bottomAnchor.constraint(equalTo: rightView.bottomAnchor)
+        ])
     }
     
     func changeOrientation() {
@@ -68,26 +86,5 @@ class HistoryView: BaseView {
                 }
             }
         }
-    }
-    func activatePotraitMode() {
-        NSLayoutConstraint.activate([
-            self.leftView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.leftView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.leftView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.leftView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)
-        ])
-    }
-    
-    func activateLandscpateMode() {
-        NSLayoutConstraint.deactivate([self.leftView.topAnchor.constraint(equalTo: self.topAnchor),
-                                       self.leftView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                                       self.leftView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                                       self.leftView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)])
-        NSLayoutConstraint.activate([
-            self.leftView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.leftView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.leftView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.leftView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
-        ])
     }
 }

@@ -35,7 +35,13 @@ struct DIContainer {
         return CurrencyRateViewModel(getCurrenciesUseCase: getCurrencyUseCase, saveCurrencyRates: saveCurrencyRates, getCurrencyRate: getCurrencyRate, saveHistoryUseCase: saveHistoryUseCase) // swiftlint:disable:this line_length
     }
     
+    func getHistoryRepository() -> HistoryRepositoryProtocol {
+        return HistoryRepository(historyLocalDataSource: HistoryLocalDataSource(localStorage: localStorage))
+    }
+    
     func getHistoryViewModel() -> BaseViewModel {
-        return HistoryViewModel()
+        let getHistoryUseCase = GetHistoryUseCase(historyRepository: getHistoryRepository())
+        let getLatestUseCase = GetLatestRateUseCase(historyRepository: getHistoryRepository())
+        return HistoryViewModel(getHistoryUseCase: getHistoryUseCase, getLatestUseCase: getLatestUseCase)
     }
 }

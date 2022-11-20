@@ -16,10 +16,6 @@ struct CurrencyRateRemoteDataSource: CurrencyRateRemoteDataSourceProtocol {
     
     let networkClient: NetworkService
     
-    init(networkClient: NetworkService) {
-        self.networkClient = networkClient
-    }
-    
     func getCurrencies(onComplete: @escaping(Result<CurrencyResponseEntity, Error>) -> Void) {
         networkClient.execute(api: CurrencyRateApis.getCurrencies) { response in
             if let currencyEntity = try? JSONDecoder().decode(CurrencyResponseEntity.self, from: response.data) {

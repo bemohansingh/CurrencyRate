@@ -12,7 +12,7 @@
     {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "location" : "https://github.com/ReactiveX/RxSwift",
       "state" : {
         "branch" : "main",
         "revision" : "8ec08deca8271516f673706e78fb954797cd6627"

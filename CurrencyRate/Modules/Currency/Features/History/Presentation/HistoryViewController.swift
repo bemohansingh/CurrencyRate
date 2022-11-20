@@ -8,7 +8,7 @@
 import UIKit
 
 class HistoryViewController: BaseViewController {
-    private lazy var historyView: HistoryView = {
+    lazy var historyView: HistoryView = {
         return self.baseView as! HistoryView // swiftlint:disable:this force_cast
     }()
     
@@ -18,11 +18,22 @@ class HistoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        historyView.historyTableView.delegate = self
+        historyView.historyTableView.dataSource = self
+        historyViewModel.getHistories()
+        historyViewModel.getLatestRates()
     }
     
     override func observeEvents() {
+        historyViewModel.histories.subscribe { [weak self] _ in
+            guard let self = self else {return}
+            self.historyView.historyTableView.reloadData()
+        }.disposed(by: historyViewModel.bag)
         
+        historyViewModel.latestRates.subscribe { [weak self] _ in
+            guard let self = self else {return}
+            self.historyView.historyTableView.reloadData()
+        }.disposed(by: historyViewModel.bag)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection:

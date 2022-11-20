@@ -6,6 +6,7 @@ target 'CurrencyRate' do
   use_frameworks!
 
   pod 'SwiftLint'
+  pod 'Charts'
 
   target 'CurrencyRateTests' do
     inherit! :search_paths
