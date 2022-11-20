@@ -7,10 +7,14 @@ target 'CurrencyRate' do
 
   pod 'SwiftLint'
   pod 'SwiftCharts'
+  pod 'RxSwift', '6.5.0'
+  pod 'RxCocoa', '6.5.0'
 
   target 'CurrencyRateTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxBlocking', '6.5.0'
+    pod 'RxTest', '6.5.0'
   end
 
   target 'CurrencyRateUITests' do

@@ -7,7 +7,7 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
+import RxRelay
 
 class HistoryViewModel: BaseViewModel {
     let getHistoryUseCase: GetHistoryUseCaseProtocol
