@@ -29,7 +29,7 @@ class CurrencyRateViewModel: BaseViewModel {
     var isCurrenciesFetching = false
     var isRateFetching = false
     
-    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol, saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol, getCurrencyRate: GetCurrencyRateUseCaseProtocol, saveHistoryUseCase: SaveHistoryUseCaseProtocol) {
+    init(getCurrenciesUseCase: GetCurrenciesUseCaseProtocol, saveCurrencyRates: SaveCurrencyRatesFromRemoteUseCaseProtocol, getCurrencyRate: GetCurrencyRateUseCaseProtocol, saveHistoryUseCase: SaveHistoryUseCaseProtocol) { // swiftlint:disable:this line_length
         self.getCurrenciesUseCase = getCurrenciesUseCase
         self.saveCurrencyRates = saveCurrencyRates
         self.getCurrencyRate = getCurrencyRate

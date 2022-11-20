@@ -93,7 +93,7 @@ class CurrencyRateViewController: BaseViewController {
     }
     
     @objc func gotoDetailView() {
-        
+        self.navigationController?.pushViewController(HistoryViewController(baseView: HistoryView(), baseViewModel: DIContainer.shared.getHistoryViewModel()), animated: true)
     }
     
     @objc func switchCurrencyTapped() {
@@ -116,10 +116,6 @@ extension CurrencyRateViewController: UITextFieldDelegate {
             return false
         }
         return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

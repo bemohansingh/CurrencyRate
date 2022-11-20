@@ -24,7 +24,7 @@ struct DIContainer {
     }
     
     func getCurrencyRateRepository() -> CurrencyRateRepositoryProtocol {
-        return CurrencyRateRepository(currencyRateLocalDataSource: CurrencyRateLocalDataSource(localStorage: localStorage), currencyRateRemoteDataSource: getCurrencyRemoteDataSource())
+        return CurrencyRateRepository(currencyRateLocalDataSource: CurrencyRateLocalDataSource(localStorage: localStorage), currencyRateRemoteDataSource: getCurrencyRemoteDataSource()) // swiftlint:disable:this line_length
     }
     
     func getCurrencyRateViewModel() -> BaseViewModel {
@@ -32,6 +32,10 @@ struct DIContainer {
         let saveCurrencyRates = SaveCurrencyRatesFromRemoteUseCase(currencyRateRepository: getCurrencyRateRepository())
         let getCurrencyRate = GetCurrencyRateUseCase(currencyRateRepository: getCurrencyRateRepository())
         let saveHistoryUseCase = SaveHistoryUseCase(currencyRateRepository: getCurrencyRateRepository())
-        return CurrencyRateViewModel(getCurrenciesUseCase: getCurrencyUseCase, saveCurrencyRates: saveCurrencyRates, getCurrencyRate: getCurrencyRate, saveHistoryUseCase: saveHistoryUseCase)
+        return CurrencyRateViewModel(getCurrenciesUseCase: getCurrencyUseCase, saveCurrencyRates: saveCurrencyRates, getCurrencyRate: getCurrencyRate, saveHistoryUseCase: saveHistoryUseCase) // swiftlint:disable:this line_length
+    }
+    
+    func getHistoryViewModel() -> BaseViewModel {
+        return HistoryViewModel()
     }
 }
