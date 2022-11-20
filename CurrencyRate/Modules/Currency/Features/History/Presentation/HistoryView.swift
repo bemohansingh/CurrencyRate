@@ -10,6 +10,7 @@ import UIKit
 class HistoryView: BaseView {
     lazy var leftView: UIView = {
         let view = UIView()
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
